@@ -7,9 +7,9 @@ Motivation
 ----------
 Beume takes a source image, resizes it on the fly, and serves it directly to the client machine caching everything in the process. A pretty simple task.
 
-I've worked in a fair ammount of projects and a service of this kind is always needed at some point. Looks so easy that usually is re-done everytime.
+I've worked in a fair amount of projects and a service of this kind is always needed at some point. Looks so easy that usually is re-done everytime.
 
-Another commont point in those projects is that resizing becomes a can of worms when in production.
+Another comon point in those projects is that resizing becomes a can of worms when in production.
 
 Resizing is a kind of a costly operation and usually ends up in:
 
@@ -87,8 +87,11 @@ And that's it, point the browser to <host>:8080 and put an URL like this one:
 
     http://<host>:8080/cidi.jpg?source=<Source url>&resize=WxH&filter=<Lanczos|imgscalr|thumbnailer>&q=<jpeg quality 1-100>
 
+Admin/Stats page is here:
+    http://<host>:8085/stats
+
 Filters:
-* lanczos: Uses the algorithm from this guy https://code.google.com/p/java-image-scaling/. Is the faster than imgscalr (although, very little) and with the best quality (For me) of the three. Uses a multithreaded Lanczos3 algorithm. I presume the multithreading is the responsible of the small speed increase, so in load this may be negligible. DO NOT CONSERVES IMAGE PROPORTIONS.
+* lanczos: Uses the algorithm from this guy https://code.google.com/p/java-image-scaling/. Is faster than imgscalr (although, very little) and with the best quality (For me) of the three. Uses a multithreaded Lanczos3 algorithm. I presume the multithreading is the responsible of the small speed increase, so in load this may be negligible. DO NOT CONSERVES IMAGE PROPORTIONS.
 * imgscalr: Pretty solid scaling algorithm from here: http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/. Is almost as fast as the above with my (harcoded) settings. A little too sharp results for me. Maybe need more tweaking of the options. ALWAYS MAINTAINS IMAGE PROPORTIONS
 * thumbnailer (or whatever not lanczos or imgscalr) : Uses Thumbnailator (https://code.google.com/p/thumbnailator/), it doesn't explain the algorithm used. Is the fastest, but the results are not as good as the previous ones for me. (Again, this is a matter of personal tast). DO NOT MAINTAINS IMAGE PROPORTIONS.
 
