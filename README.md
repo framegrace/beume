@@ -37,6 +37,12 @@ Features
 * Simple. One jar and a couple of config files. (Well, ehcache one is not that simple....)
 * A (minimal right now) admin page.
 
+A bad drawn diagram of a possible usage:
+
+![Beume diagram](https://drive.google.com/file/d/0B2mSFL1zlLIBSmNRN3B3czdfNlE/edit?usp=sharing)
+![Beume diagram](https://drive.google.com/file/d/0B2mSFL1zlLIBSmNRN3B3czdfNlE)
+
+
 To-Do
 -----
 * Able to prune and pin entries.
