@@ -1,7 +1,7 @@
 beume
 =====
 
-High performance, scalable and high available image resize service.
+High performance, scalable and high available java based image resize service.
 
 VERY EARLY STAGE 
 ----------------
@@ -111,5 +111,7 @@ Final note
 -----------
 
 I've still not fully tested the code in full production loads and with all the full fledged ehcache tweakery for HA and scaling. Just basic tests. Reviewers are welcomed
+
+Hope is usefull for you!!
 
 As usual, use at your own risk. I make no guarantees.
