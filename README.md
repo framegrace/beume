@@ -37,7 +37,7 @@ Features
 * Simple. One jar and a couple of config files. (Well, ehcache one is not that simple....)
 * A (minimal right now) admin page.
 
-A bad drawn diagram of a possible usage, showing the fanciness of lateral cache:
+A bad drawn diagram of Beume architecture, showing also the fanciness of lateral cache:
 
 ![Beume diagram](imgs/Beume diagram.jpg)
 
