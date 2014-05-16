@@ -39,8 +39,7 @@ Features
 
 A bad drawn diagram of a possible usage:
 
-![Beume diagram](https://drive.google.com/file/d/0B2mSFL1zlLIBSmNRN3B3czdfNlE/edit?usp=sharing)
-![Beume diagram](https://drive.google.com/file/d/0B2mSFL1zlLIBSmNRN3B3czdfNlE)
+![Beume diagram](imgs/Beume diagram.jpg)
 
 
 To-Do
