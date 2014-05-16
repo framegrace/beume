@@ -1,4 +1,7 @@
 beume
 =====
 
-High performance, high available, image resize server.
+High performance, scalable and high available, image resize service.
+
+Motivation
+----------
