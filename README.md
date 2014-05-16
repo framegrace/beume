@@ -37,10 +37,11 @@ Features
 * Simple. One jar and a couple of config files. (Well, ehcache one is not that simple....)
 * A (minimal right now) admin page.
 
-A bad drawn diagram of a possible usage:
+A bad drawn diagram of a possible usage, showing the fanciness of lateral cache:
 
 ![Beume diagram](imgs/Beume diagram.jpg)
 
+A miss of any image, will be populated to all the servers of the cluster. So in case of a failure of one of the servers, all the rest have all the content. It also makes sharding unnecessary performance-wise (All images are calculated only once). You can still use sharding for memory constrains (If you want. allthough this have to be configured outside, on the load balancer)
 
 To-Do
 -----
