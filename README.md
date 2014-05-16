@@ -3,6 +3,12 @@ beume
 
 High performance, scalable and high available image resize service.
 
+VERY EARLY STAGE 
+----------------
+
+Please test it. I will be very happy if you tell me the results. Will do my best to invite you to a Beer if you ever go to Barcelona, and we'll chat about it or about anything.
+
+
 Motivation
 ----------
 Beume takes a source image, resizes it on the fly, and serves it directly to the client machine caching everything in the process. A pretty simple task.
