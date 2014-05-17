@@ -97,6 +97,8 @@ Almost all parameters are pretty obvious. Here are the maybe most confusing ones
 
 ****
 
+See ehcache documentation for more complex configurations. The only constraint is that the caches named "frontCache" and "backCache" must be defined.
+
 * Run the jar 
 
     java -jar beume-1.0-SNAPSHOT.jar com.servershepherd.beume.App
