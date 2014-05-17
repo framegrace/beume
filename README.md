@@ -107,7 +107,8 @@ And that's it, point the browser to <host>:8080 and put an URL like this one:
 
     http://<host>:8080/cidi.jpg?source=<Source url>&resize=WxH&filter=<Lanczos|imgscalr|thumbnailer>&q=<jpeg quality 1-100>
 
-Admin/Stats page is here:
+Admin/Stats page is at:
+
     http://<host>:8085/stats
 
 Filters:
