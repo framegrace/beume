@@ -43,6 +43,7 @@ A bad drawn diagram of Beume architecture, showing also the fanciness of lateral
 
 A miss of any image, will be populated to all the servers of the cluster. So in case of a failure of one of the servers, all the rest have all the content. It also makes sharding unnecessary performance-wise (All images are calculated only once). You can still use sharding for memory constrains (If you want. allthough this have to be configured outside, on the load balancer)
 
+To configure lateral cache, please read the ehcache documentation. It's all on its roof, beume has no word on it (Ah! the joys of minimalistic programming :) )
 To-Do
 -----
 * Able to prune and pin entries.
@@ -74,6 +75,11 @@ Install
     FRONT_ERROR_RETAIN_SECS=10    
 
 ****
+
+Almost all parameters are pretty obvious. Here are the maybe most confusing ones:
+
+* BACK/FRONT_ERROR_RETAIN_SECS: Any error retrieving the source image will stay on the caches for that amount of time. After that, Beume will retry the retrieval. This is to avoid hammering the server with failed image retrievals. During this time, Beume will return the cached error on any query.
+* BACK_REQ_MAX_LENGHT: Maximum source image size. Security feature to avoid caching an Ubuntu ISO or a DVD rip by accident. This will sure destroy the server. ( Baume needs to buffer all the source image at once, in memory)
 
 ### ~/beume/ehcache.xml (Basic config)
 
