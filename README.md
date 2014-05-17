@@ -123,4 +123,4 @@ I've still not fully tested the code in full production loads and with all the f
 
 Hope is usefull for you!!
 
-As usual, use at your own risk. I make no guarantees.
+As usual, use at your own risk. I make no guarantees nor take any responsibility of any downtime caused.
