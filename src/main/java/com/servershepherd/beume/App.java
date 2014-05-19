@@ -34,6 +34,8 @@ public class App {
         for (Handler h : handlers) {
             h.setLevel(Level.INFO);
         }
+        if (args.length>=1) CommonResources.CONF_FILE=args[1];
+        
         Logger ehcacheL = Logger.getLogger("net.sf.ehcache");
         ehcacheL.setLevel(Level.INFO);
         CommonResources.initialize();
