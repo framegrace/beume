@@ -55,8 +55,8 @@ To-Do
 
 Install
 -------
-* Download the project.
-* Compile it. It is a Netbeans project, you can either open it with Netbeans and build, or just use maven to do its magic. (All dependecies are in the pom.xml)
+* Download the latest release (release dir). It includes all dependencies (ehcache,resize libs,grizzly,slf4j and some Apache commons and httpclient. See the dependecies list below)
+* Alternatively, you can clone the project and open it in Netbeans (Is a Netbeans project) or use maven to rebuild it.
 * Create a directory called beume on your home dir and put a beume.properties and an ehcache.xml. Here you have a properties file with the defaults, and an ehcache sample config file to test. (Forgot to add a "-f" option to change the config file location :) You can change it in the code. Promise to do it ASAP)
 
 ### ~/beume/beume.properties
@@ -115,6 +115,23 @@ Filters:
 * lanczos: Uses the algorithm from this guy https://code.google.com/p/java-image-scaling/. Is faster than imgscalr (although, very little) and with the best quality (For me) of the three. Uses a multithreaded Lanczos3 algorithm. I presume the multithreading is the responsible of the small speed increase, so in load this may be negligible. It does not maintain image proportions, will do exactly wat you say, scale to WxH.
 * imgscalr: Pretty solid scaling algorithm from here: http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/. Is almost as fast as the above with my (harcoded) settings. A little too sharp results for me. Maybe need more tweaking of the options. Always maintains image proportions. Will scale to fit the box you define in WxH.
 * thumbnailer (or whatever not lanczos or imgscalr) : Uses Thumbnailator (https://code.google.com/p/thumbnailator/), it doesn't explain the algorithm used. Is the fastest, but the results are not as good as the previous ones for me. (Again, this is a matter of personal tast). It does not maintain image proportions.
+
+Dependencies used
+-----------------
+
+All those are available thru default maven repository.
+
+      junit 3.8.1
+      thumbnailator 0.4.6
+      ehcache 2.7.4
+      java-image-scaling 0.8.5
+      commons-httpclient 3.1
+      slf4j-jdk14 1.7.5
+      slf4j-simple 1.7.0
+      jersey-grizzly2 1.8
+      asm 3.1
+      jersey-bundle 1.8
+      imgscalr-lib 4.2
 
 Final note
 -----------
