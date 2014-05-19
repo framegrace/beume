@@ -57,12 +57,13 @@ Install
 -------
 * Download the latest release (release dir). It includes all dependencies (ehcache,resize libs,grizzly,slf4j and some Apache commons and httpclient. See the dependecies list below)
 * Alternatively, you can clone the project and open it in Netbeans (Is a Netbeans project) or use maven to rebuild it.
-* Create a directory called beume on your home dir and put a beume.properties and an ehcache.xml. Here you have a properties file with the defaults, and an ehcache sample config file to test. (Forgot to add a "-f" option to change the config file location :) You can change it in the code. Promise to do it ASAP)
+* Create a directory called beume on your home dir and put a beume.properties and an ehcache.xml. This is the default beume.properties, and an ehcache sample config file to test. (You can place the files elsewhere, just specify the propertires file on startup and change the EHCACHE_CONF_FILE option inside)
 
 ### ~/beume/beume.properties
 
 ****
 
+    # EHCACHE_CONF_FILE=/someuser/beume/ehcache.xml # Defaults to <Homedir>/beume
     BACK_ERROR_RETAIN_SECS=30
     HOST=localhost
     BASE_URL=/
@@ -102,6 +103,10 @@ See ehcache documentation for more complex configurations. The only constraint i
 * Run the jar 
 
     java -jar beume-1.0.jar 
+
+* Or alternatively, for a config file on a different place:
+    java -jar beume-1.0.jar -- <config file location>
+
 
 And that's it, point the browser to <host>:8080 and put an URL like this one:
 
