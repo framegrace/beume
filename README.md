@@ -105,6 +105,7 @@ See ehcache documentation for more complex configurations. The only constraint i
     java -jar beume-1.0.jar 
 
 * Or alternatively, for a config file on a different place:
+
     java -jar beume-1.0.jar -- <config file location>
 
 
