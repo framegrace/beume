@@ -4,7 +4,7 @@
 
     <groupId>com.servershepherd</groupId>
     <artifactId>beume</artifactId>
-    <version>1.1-dev </version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>beume</name>
