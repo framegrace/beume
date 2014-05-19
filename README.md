@@ -101,7 +101,7 @@ See ehcache documentation for more complex configurations. The only constraint i
 
 * Run the jar 
 
-    java -jar beume-1.0.jar com.servershepherd.beume.App
+    java -jar beume-1.0.jar 
 
 And that's it, point the browser to <host>:8080 and put an URL like this one:
 
