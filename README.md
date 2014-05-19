@@ -106,7 +106,7 @@ See ehcache documentation for more complex configurations. The only constraint i
 
 * Or alternatively, for a config file on a different place:
 
-    java -jar beume-1.0.jar -- <config file location>
+    java -jar beume-1.0.jar -- /etc/beume/beume.properties
 
 
 And that's it, point the browser to <host>:8080 and put an URL like this one:
