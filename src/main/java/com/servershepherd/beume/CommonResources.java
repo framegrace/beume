@@ -13,10 +13,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
 import java.util.Properties;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.ehcache.constructs.blocking.SelfPopulatingCache;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
+import org.apache.commons.httpclient.methods.GetMethod;
 
 /**
  *
@@ -48,12 +50,20 @@ public class CommonResources {
     
     // Front and Backend caches.
     @NoStore
-    public static SelfPopulatingCache back;
+    private static SelfPopulatingCache backCache;
     @NoStore
-    public static SelfPopulatingCache front;
+    private static SelfPopulatingCache frontCache;
+    
+    @NoStore
+    private static HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
 
     public static void initialize() throws IOException {
-        
+        loadValues();
+        backCache = SPCacheFactory.createCache("backCache", new BackCacheUpdater());
+        frontCache = SPCacheFactory.createCache("frontCache", new FrontCacheUpdater(CommonResources.backCache));
+    }
+
+    public static void loadValues() throws IOException {
         Properties prop=new Properties();
         prop.load(new FileInputStream(CONF_FILE));
         for(Object so:prop.keySet()) {
@@ -68,10 +78,9 @@ public class CommonResources {
             } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ex) {
                 Logger.getLogger(CommonResources.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }  
-        back = SPCacheFactory.createCache("backCache", new BackCacheUpdater());
-        front = SPCacheFactory.createCache("frontCache", new FrontCacheUpdater(CommonResources.back));
+        }
     }
+    
     public static void saveConfig() throws IllegalArgumentException, IllegalAccessException, FileNotFoundException, IOException {
         Properties prop=new Properties();
         for (Field f:CommonResources.class.getFields()) {
@@ -90,6 +99,31 @@ public class CommonResources {
         } catch (IllegalArgumentException ex) {
             Logger.getLogger(CommonResources.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    /**
+     * @return the backCache
+     */
+    public static SelfPopulatingCache getBackCache() {
+        return backCache;
+    }
+
+    /**
+     * @return the frontCache
+     */
+    public static SelfPopulatingCache getFrontCache() {
+        return frontCache;
+    }
+
+    /**
+     * @return the httpClient
+     */
+    public static HttpClient getHttpClient() {
+        return httpClient;
+    }
+    
+    public static GetMethod createGetMethod() {
+        return new GetMethod();
     }
 }
 @Retention(RetentionPolicy.RUNTIME)

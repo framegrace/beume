@@ -33,7 +33,7 @@ public class Resizer {
         Element result;
         try {
             FrontKey fk = createKey(mod, source, resize, filter);
-            result = CommonResources.front.get(fk);
+            result = CommonResources.getFrontCache().get(fk);
             if (result == null) {
                 return Response.status(Response.Status.NOT_FOUND).entity("Image not found").build();
             } else if (result.getObjectValue() instanceof String) {

@@ -38,8 +38,9 @@ public class App {
         
         Logger ehcacheL = Logger.getLogger("net.sf.ehcache");
         ehcacheL.setLevel(Level.INFO);
+        CommonResources.loadValues();
         CommonResources.initialize();
-        if (CommonResources.back != null && CommonResources.front != null) {
+        if (CommonResources.getBackCache() != null && CommonResources.getFrontCache() != null) {
             try {
                 HttpServer httpServer = startServer();
                 HttpServer adminServer = startAdminServer();

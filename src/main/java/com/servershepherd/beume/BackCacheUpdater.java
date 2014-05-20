@@ -7,9 +7,7 @@ import java.util.logging.Logger;
 import net.sf.ehcache.Element;
 import net.sf.ehcache.constructs.blocking.UpdatingCacheEntryFactory;
 import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.URI;
 import org.apache.commons.httpclient.URIException;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -18,14 +16,8 @@ import org.apache.commons.httpclient.methods.GetMethod;
  *
  * @author marc
  */
+
 class BackCacheUpdater implements UpdatingCacheEntryFactory {
-
-    HttpClient client;
-
-    public BackCacheUpdater() {
-        MultiThreadedHttpConnectionManager connectionManager = new MultiThreadedHttpConnectionManager();
-        client = new HttpClient(connectionManager);
-    }
 
     @Override
     public void updateEntryValue(Object key, Object value) throws Exception {
@@ -48,10 +40,10 @@ class BackCacheUpdater implements UpdatingCacheEntryFactory {
         byte[] v ;
         BackKey fk = (BackKey) key;
         String message="Unknown error";
+        GetMethod method = CommonResources.createGetMethod();
         try {
-            GetMethod method = new GetMethod();
             method.setURI(new URI(fk.source_url, true));
-            int returnCode = client.executeMethod(method);
+            int returnCode = CommonResources.getHttpClient().executeMethod(method);
             if (returnCode == HttpStatus.SC_OK) {
                 HashMap<String, Object> headers = extractHeaders(method);
                 String contentType = (String) headers.get("content-type");
@@ -63,7 +55,7 @@ class BackCacheUpdater implements UpdatingCacheEntryFactory {
                         v = method.getResponseBody();       
                         return v;
                     } else {
-                        message="Request: " + fk.source_url + " above max length threshold (" + contentLength + "/" + CommonResources.BACK_REQ_MAX_LENGTH + ")";
+                        message="Request: " + fk.source_url + " No content-length returned or above max length threshold (" + contentLength + "/" + CommonResources.BACK_REQ_MAX_LENGTH + ")";
                         Logger.getLogger(BackCacheUpdater.class.getName()).log(Level.WARNING,message);
                     }
                 } else {
@@ -80,6 +72,8 @@ class BackCacheUpdater implements UpdatingCacheEntryFactory {
         } catch (IOException ex) {
             message="Request: " + fk.source_url + " IO Exception. ";
             Logger.getLogger(BackCacheUpdater.class.getName()).log(Level.SEVERE, message, ex);
+        } finally {
+            method.releaseConnection();
         }
         return message;
     }
